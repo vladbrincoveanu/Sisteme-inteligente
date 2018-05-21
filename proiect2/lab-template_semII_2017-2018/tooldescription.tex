@@ -1,0 +1,12 @@
+\begin{itemize}
+\item{Explaining the tool}
+
+\tab Machine learning algorithms implemented in scikit-learn expect data to be stored in a two-dimensional array or matrix. The arrays can be either numpy arrays, or in some cases scipy.sparse matrices. The size of the array is expected to be: [n samples, n features]. \\ 
+
+\tab scikit-learn comes with a few standard datasets, for instance the iris and digits datasets for classification and the boston house prices dataset for regression. A dataset is a dictionary-like object that holds all the data and some metadata about the data. This data is stored in the .data member, which is a n samples, n features array. In the case of supervised problem, one or more response variables are stored in the .target member. More details on the different datasets can be found in the dedicated section.\\
+
+\tab In the case of the digits dataset, the task is to predict, given an image, which digit it represents. We are given samples of each of the 10 possible classes (the digits zero through nine) on which we fit an estimator to be able to predict the classes to which unseen samples belong.
+
+In scikit-learn, an estimator for classification is a Python object that implements the methods fit(X, y) and predict(T).\\
+
+\end{itemize}

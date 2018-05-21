@@ -1,0 +1,27 @@
+\section{Describe in natural language}
+
+\tab We propose to predict the chance of having a heart disease or having hypertension given the dataset.\\
+\tab Our approach was to use neural networks and to try different algorithms integrated in Multi-layer Perceptron (MLP) and compare which one of those works better for the given dataset of heart disease. More detailed info will be described in implementation chapter.\\
+
+\tab We will start by examinin our dataset .\footnote{https://www.kaggle.com/asaumya/healthcare-problem-prediction-stroke-patients} . The datasets are provided by SaumyaAgarwal HealthCare Problem: Prediction Stroke Patients on the kaggle website. He used it to predict stroke by having different data. We will use it for predicting  heart disease or having hypertension.\\
+
+\tab Understanding Data
+Here is the Definitions of the columns of the data
+
+id-Patient ID\\
+gender-Gender of Patient\\
+age-Age of Patient\\
+hypertension-0 - no hypertension, 1 - suffering from hypertension\\
+heart-disease-0 - no heart disease, 1 - suffering from heart disease\\
+ever-married-Yes/No\\
+work-type-Type of occupation\\
+Residence-type-Area type of residence (Urban/ Rural)\\
+avg-glucose-level-Average Glucose level (measured after meal)\\
+bmi-Body mass index\\
+smoking-status-patient’s smoking status\\
+stroke-0 - no stroke, 1 - suffered stroke\\
+
+\tab The columns that we will be using are all except id-patient and stroke, to not interfere with what our poster used the data for.\\
+\tab Furthermore, there are 2 datasets, one for training and one for testing. We merged all , and use cross-validation function to split the data into test data and train data.\\
+
+\tab All this data will be converted to integers, usign different functions of the panda library.\\ 

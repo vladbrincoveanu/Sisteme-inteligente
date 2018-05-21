@@ -1,0 +1,115 @@
+\section{Start example}
+\tab We will model the network by startting from an example which can be found \href{https://www.norsys.com/tutorials/netica/secA/tut_A1.html}{here} where is described a case for some diseases.\\
+
+\section{How we chose nodes}
+\tab Nodes will be chosen by the chosen scope. We will put a diagnosis of a person who walks to a clinic and presents fever, vomiting, muscle pain, eec. We will try to determine the disease of the pacient by these. Nodes 
+will be chosen such that it will have a bigger spectre of posibilities.\\
+
+\section{Probabilities}
+
+\tab To calculate the probability of having fever, the logical "noisy" relationships are used. In propositional logic we can say that fever is true if and only if malaria, yellow fever or flu are true. The noisy-OR model allows for uncertainties as to the ability of each parent to cause his descendant to be true, so a person may have flu but without fever.\\
+\tab The model assumes that anything that inhibits a parent to produce a child's effect is independent of any inhibition by other parents to produce offspring effects: for example, any inhibit malaria to cause fever is independent of any flu inhibiting to produce fever. With these assumptions, fever has the false value if and only if all of his parents are inhibited to produce fever, and the probability is the product of inhibition probabilities q for each parent. We assume the following probability of inhibition:\\
+\begingroup\makeatletter\def\@currenvir{verbatim}
+\verbatim
+q_gripa = p(-febra|gripa, -malarie, -febra g) = 0.6;
+q_febra g = p(-febra |-gripa, malarie, febra g) = 0.1;
+q_malarie  = p(-febra |gripa, malarie, -febra g) = 0.1;
+Pe baza acestor informatii si ale asumptiilor noisy-OR,
+ se poate construi tabelul de probabilitati de mai sus. Regula generala este:
+	P(x_i | parents(X_i)) = 1 – product (given that j:X_j = true)[q_j], 
+unde produsul este aplicat parintilor care au valoarea true pentru randul respectiv.
+
+p(febra|malarie) = 1 – q_malarie = 1 – 0.15 = 0.85  
+p(febra|febra galbena) = 1 – q_febraGalbena = 1 – 0.1 = 0.9
+p(febra|malarie, febra galbena) = 1   - q_malarie,febraGalbena =
+ true = 1 – (0.15 * 0.1) = 0.985
+p(febra|gripa) = 1 – q_gripa = 1-0.6 = 0.4
+p(febra|gripa, febra galbena) = 1 – q_gripa,febraGalbena =
+ true = 1 – (0.6 * 0.1) = 0.94
+p(febra|gripa, malarie) = 1 – q_gripa,malarie = true   =
+ 1 – (0.6 * 0.15) = 0.91
+p(febra|gripa,malarie,febra galbena) = 1 – q_gripa,malarie,
+febra galbena = true = 1 – (0.6*0.1*0.15) = 0.991.
+
+In cazul laringitei, valorile sunt urmatoarele:
+q_contact_persoane_bolnave = p(-laringita |
+ contact persoane bolnave, -consum tutun/alcool) = 0.22.
+q_consum_tutun/alcool = p(-laringita | -contact cu persoane bolnave,
+ consum tutun/alcool) = 0.6.
+
+p(laringita | -contact cu persoane bolnave, -consum_tutun/alcool) = 0
+p(laringita | consum tutun/alcool) = 1 – q_consum_tutun/alcool=true    = 
+ 1 – 0.6 = 0.4
+p(laringita | contact cu persoane bolnave = 1 – q_contact_persoane_bolnave =
+ true   =   1 – 0.22 = 0.78
+p(laringita | contact cu persoane bolnave, contact cu persoane bolnave) =
+ 1 – (0.66 * 0.22) = 0.868.
+
+In cazul starilor de voma, valorile sunt urmatoarele:
+
+q_malarie = p(-stari de voma | malarie, -febra galbena) = 0.34
+q_febraGalbena = p(-stari de voma | -malarie, febra galbena) = 0.43
+
+p(stari de voma | -malarie, -febra galbena) = 0
+p(stari de voma | -malarie, febra galbena) = 1 – q_febraGalbena = true   =
+
+  1 – 0.43 = 0.57
+p(stari de voma | malarie, -febra galbena) = 1 – q_malarie=true   = 1 – 0.34 = 0.66
+p(stari de voma | malarie, febra galbena)  = 1 – q_malarie, febraGalbena=true  = 
+1  - (0.34 * 0.43) = 0.8538
+
+
+ In cazul pneumoniei, valorile sunt urmatoarele:
+q_gripa = p(-pneumonie | gripa) = 0.28
+p(pneumonie | -gripa) = 0.1
+p(pneumonie | gripa) = 1  - q_gripa=true   = 1 – 0.28  = 0.72
+
+
+In cazul tuselor/problemelor respiratorii, valorile sunt urmatoarele:
+q_gripa = p(-probleme respiratorii | gripa, -laringita)  = 0.57
+q_laringita = p(-probleme respiratorii | -gripa, laringita) = 0.04
+
+p(probleme respiratorii| - laringita, -gripa) = 0
+p(probleme respiratorii | -gripa, laringita) = 1 – q_laringita=true  =
+ 1 – 0.04 = 0.96
+p(probleme respiratorii | gripa, -laringita) = 1  - q_gripa=true =
+ 1 -  0.57 = 0.43
+p(probleme respiratorii | gripa, laringita) =1 – q_gripa,laringita=true  = 
+1 – (0.57 * 0.04) = 0.9772
+
+In cazul comei, valorile sunt urmatoarele:
+q_malarie = p(-coma|malarie) = 0.91
+p(coma|malarie) = 1 – q_malarie=true   = 1 – 0.91 = 0.09
+p(coma|-malarie) = 0
+
+
+In case of death, probabilities are the following:
+q_febraGalbena = q(-moarte | febraGalbena, -malarie, -laringita, -gripa)  = 0.999992
+q_malarie = q(-moarte | -febraGalbena, malarie, -laringita, -gripa)  = 0.9712
+q_laringita = q(-moarte | -febraGalbena, -malarie, laringita, -gripa)  = 0.9999993
+q_gripa = q(-moarte | -febraGalbena, -malarie, -laringita, gripa)  = 0.999992
+
+p(moarte | -febraGalbena, -malarie, -laringita, -gripa)  = 0
+p(moarte | febraGalbena, malarie, laringita, gripa)  = 1 -q_all=true = 
+1 – (0.999992 * 0.9712 * 0.9999993 * 0.999992) = 0.0288
+p(moarte | febraGalbena, malarie, laringita)  = 1 -q_fg,malarie, laringita=true   = 
+ 1 – (0.999992 * 0.9712 * 0.9999993) = 0.0288
+p(moarte | febraGalbena, malarie, gripa)  = 1 -q_fg,m,g=true  =
+ 1 – (0.999992 * 0.9712 * 0.999992) = 0.028815
+p(moarte | febraGalbena, malarie)  = 1 -q_fg,m = 1 – (0.999992 * 0.9712) = 0.028807
+p(moarte | febraGalbena, laringita, gripa)  = 1 – q_fg,l,g=true   = 
+  1 – (0.999992 * 0.9999993 * 0.999992) = 0.000008
+p(moarte | febraGalbena, laringita)  = 1 – q_fg,l=true   =  
+ 1 – (0.999992 * 0.9999993) = 0.000008
+p(moarte | febraGalbena)  = 1 – q_fg=true   =   1 – 0.999992 = 0.000008
+p(moarte | malarie, laringita, gripa)  = 1 -q_m,l,g=true =
+ 1 – (0.9712 * 0.9999993 * 0.999992) = 0.02880
+p(moarte | malarie, laringita)  = 1 -q_m,l,g=true = 1 – (0.9712 * 0.9999993) = 0.0288
+p(moarte | malarie, gripa)  = 1 -q_m,g=true = 1 – (0.9712 * 0.9999992) = 0.0288
+p(moarte | malarie)  = 1 -q_m=true = 1 – (0.9712) = 0.0288
+p(moarte | laringita, gripa)  = 1 -q_l,g=true = 
+1 – (0.9999993 * 0.9999992) = 0.000008
+p(moarte | laringita)  = 1 -q_l,g=true = 1 – (0.9999993) = 0.000008
+
+
+\end{verbatim}

@@ -1,0 +1,34 @@
+\begin{itemize}
+\item{Neural network models}
+
+\tab Multi-layer Perceptron (MLP) is a supervised learning algorithm that learns a function f(dot): R to the power m goest to  R to the power o by training on a dataset, where m is the number of dimensions for input and o is the number of dimensions for output. Given a set of features X = {x1, x2, ..., xm} and a target y, it can learn a non-linear function approximator for either classification or regression. It is different from logistic regression, in that between the input and the output layer, there can be one or more non-linear layers, called hidden layers. Figure 1 shows a one hidden layer MLP with scalar output. \\ 
+
+\tab The advantages of Multi-layer Perceptron are:
+
+	- capability to learn non-linear models.
+
+	- capability to learn models in real-time (on-line learning) using partial fit.
+
+The disadvantages of Multi-layer Perceptron (MLP) include:
+
+	- MLP with hidden layers have a non-convex loss function where there exists more than one local minimum. Therefore different random weight initializations can lead to different validation accuracy.
+
+	- MLP requires tuning a number of hyperparameters such as the number of hidden neurons, layers, and iterations.
+
+	- MLP is sensitive to feature scaling.  \\
+
+\item{Classifier}
+
+\tab Class MLPClassifier implements a multi-layer perceptron (MLP) algorithm that trains using Backpropagation.
+
+MLP trains on two arrays: array X of size (n samples, n features), which holds the training samples represented as floating point feature vectors; and array y of size (n samples,), which holds the target values (class labels) for the training samples. \\
+
+\tab  Currently, MLPClassifier supports only the Cross-Entropy loss function, which allows probability estimates by running the predict proba method.
+
+MLP trains using Backpropagation. More precisely, it trains using some form of gradient descent and the gradients are calculated using Backpropagation. For classification, it minimizes the Cross-Entropy loss function, giving a vector of probability estimates P(y|x) per sample x. \\
+
+\tab  MLPClassifier supports multi-class classification by applying Softmax as the output function.
+
+Further, the model supports multi-label classification in which a sample can belong to more than one class. For each class, the raw output passes through the logistic function. Values larger or equal to 0.5 are rounded to 1, otherwise to 0. For a predicted output of a sample, the indices where the value is 1 represents the assigned classes of that sample. \\
+
+\end{itemize}

@@ -1,0 +1,147 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage{algorithmic}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage[margin=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{listings} 
+\usepackage{graphicx} 
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{hyperref}
+%\usepackage{mdframed}
+
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\graphicspath{ {images/} }
+\newcommand{\currentdata}{ 1 February 2017}
+\newtheorem{example}{Example}
+
+\begin{document}
+\vspace{-5cm}
+\begin{center}
+Department of Computer Science\\
+Technical University of Cluj-Napoca\\
+\includegraphics[width=10cm]{fig/footer}
+\end{center}
+\vspace{1cm}
+%\maketitle
+\begin{center}
+\begin{Large}
+ %\textbf{Introduction to Artificial Intelligence}\\
+\textbf{Intelligent Systems}\\
+\end{Large}
+\textit{Laboratory activity 2016-2017}\\
+\vspace{3cm}
+Adrian Groza, Anca Marginean and Radu Razvan Slavescu\\
+Tool: Belief and Decision Networks - Version 5.1.10\\
+\vspace{1.5cm}
+Name:Brincoveanu Vasile Vlad si Ghiurca Dorin\\
+Group:30233\\
+Email:gg.vladbrincoveanu@gmail.com\\
+\vspace{6cm}
+Assoc. Prof. dr. eng. Adrian Groza\\
+Adrian.Groza@cs.utcluj.ro\\
+\vspace{1cm}
+\includegraphics[width=10cm]{fig/footer}
+\end{center}
+
+\tableofcontents
+
+
+%\chapter{Laboratory works}
+
+\chapter{Installing the tool ($W_1$)}
+
+\colorbox{blue!20}{\fbox{\begin{minipage}{1.0\textwidth}                                  
+The teaching objectives for this week are:
+\begin{enumerate}
+ \item To know how to use the tool in our future project.
+\item To know from where we can download it, what version, etc. And how to run it.
+\end{enumerate}
+\end{minipage}}}\\
+
+\colorbox{blue!20}{\fbox{\begin{minipage}{16cm}Steps for installing the tool on windows or mac:
+\begin{enumerate}
+\item First step is to go on the \href{http://www.aispace.org/}{application site}
+\item Then you need to go on download part of the site.
+\item Under Belief and Decision Networks you should download the latest version[jar download].
+\end{enumerate}
+\end{minipage}}}\\
+
+\begin{itemize}
+\item
+	\tab Some notes, you should have java installed prior to  running the application, otherwise it won't work.\\
+
+\end{itemize}
+
+\chapter{Running and understanding examples ($W_2$)}
+\colorbox{blue!20}{\fbox{\begin{minipage}{1.0\textwidth}                                  
+The teaching objectives for this week are:
+\begin{enumerate}
+ \item To run and understand the some examples made by me.
+\item To identify what realistic problems are adequate for my tool. 
+\end{enumerate}
+\end{minipage}}}
+\input{runningexamples}
+ 
+\chapter{Understanding conceptual instrumentation ($W_3$)}
+\label{ch:tool}
+
+\colorbox{blue!20}{\fbox{\begin{minipage}{1.0\textwidth}                                  
+The teaching objectives for this week are:
+\begin{enumerate}
+ \item  To understand the algorithm(s) on which your tool relies.
+\item To get used with writing algorithms in Latex
+\end{enumerate}
+\end{minipage}}}\\
+
+\input{tooldescription}
+
+\chapter{Project description ($W_4$)}
+
+
+\colorbox{blue!20}{\fbox{\begin{minipage}{1.0\textwidth}                                  
+The teaching objectives for this week are:
+\begin{enumerate}
+ \item To have a clear description of what you intend to develop.
+\item To point to specific resources (datasets, knowledge bases, external tools) 
+that support the development of your idea and which minimise the risk of failure.
+\item To identify related work (articles) that are relevant or similar to your approach.
+\end{enumerate}
+\end{minipage}}}\\
+
+\input{projectdescription}
+
+\chapter{Implementation details ($W_5$)}
+
+The teaching objectives for this week are:
+\begin{enumerate}
+ \item Illustrate each aspect of the reality that you have 
+ modelled in your solution.
+\item To explain the relevant code from your scenario.
+\end{enumerate}
+
+\input{implementation}
+
+\chapter{Graphs and experiments ($W_{6}$)}
+
+The objectives for this week are:
+\begin{enumerate}
+ \item To describe and interpret each experiment that you have performed
+\end{enumerate}
+
+An experiment investigates how some variables are related. 
+Usually, experiments verify a previosly formulated hypothesis.
+Such hypothesis may investigate how your software degrades its performance with larger inputs.
+You will need to run simulations to see how your implementation is affected by different inputs.
+
+\input{graphs}
+
+
+\appendix
+
+\chapter{Your original code}
+\label{app:code}
+
+\include{original}
+
+\end{document}
